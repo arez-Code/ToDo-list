@@ -6,6 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="file.css">
   <script src="https://kit.fontawesome.com/8b17c70c5e.js" crossorigin="anonymous"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
   <title>Document</title>
 </head>
 <body>
@@ -13,29 +16,28 @@
   <div class="main-container">
     <header>
       <div class="avatar-upload">
-        <img src="" class="avatar avatarDefault" id="Avatar">
-        <input type="file" id="choose-avatar">
+        <p id="clock"></p>
+        <img id='Avatar'>
+        <input type='file' onchange = "read(this)">
       </div>
       <div class="bottom-header">
-        <div class="bottom-header-left"></div>
-        <div class="bottom-header-right"></div>
+        <div class="bottom-header-left">
+          <select id="filter-todos" name="todos">
+            <option value="all">all</option>
+            <option value="completed">completed</option>
+            <option value="uncompleted">uncompleted</option>
+          </select>
+        </div>
+        <div class="bottom-header-right">
+              <form id="todo-form">
+            <input type="text" id="todo-input" placeholder="add ToDo ...">
+            <button type="submit" id="add-todo">add</button>
+          </form>
+        </div>
       </div>
     </header>
     <main>
-            <form id="todo-form">
-                  <input type="text" id="todo-input" placeholder="add ToDo ...">
-                  <button type="submit" id="add-todo">add</button>
-                <div class="right">
-                  <select id="filter-todos" name="todos">
-                    <option value="all">all</option>
-                    <option value="completed">completed</option>
-                    <option value="uncompleted">uncompleted</option>
-                  </select>
-                </div>
-              <div class="todo-container">
-                <ul class="todoList"></ul>
-              </div>
-            </form>
+        <ul class="todoList"></ul>
     </main>
   </div>
   <script src="app.js"></script>

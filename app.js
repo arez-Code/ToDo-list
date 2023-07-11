@@ -1,27 +1,30 @@
 // form => submit => creat new ToDo => {id , createdAt , title , iscompleted}
 
+let filterValue = 'all';
+
 const todoInput = document.getElementById('todo-input');
 const todoForm = document.getElementById('todo-form');
 const todoList = document.querySelector(".todoList")
 const selectFilters = document.getElementById('filter-todos')
-const avatarFile = document.querySelector("#choose-avatar")
-let avatar = document.querySelector("#Avatar")
 
 todoForm.addEventListener('submit',addNewTodo)
-selectFilters.addEventListener('change',filterTodos)
-avatarFile.addEventListener('submit',selectAvatar)
-
-avatar.forEach(()=>{
-  if(Image.src = " ") {avatar.getElementsByClassName("avatarDefault")}
-  else {avatar.getElementsByClassName("avatar")}
+selectFilters.addEventListener('change',(e)=>{
+  filterValue = e.target.value;
+  filterTodos();
 })
 
-function selectAvatar(){
+function read(value) {
+  const reader = new FileReader();
 
+  reader.onload = (e) => {
+    document.getElementById("Avatar").src = e.target.result;
+  }
+
+  reader.readAsDataURL(value.files[0]);
 }
 
 document.addEventListener("DOMContentLoaded",()=>{
-  const todos = getAllTodos()
+  const todos = getAllTodos();
   creatTodos(todos)
 })
 
@@ -46,13 +49,14 @@ let result = "";
   todos.forEach((todo)=>{
     result += `<li class="todo">
     <div class= "todo-cart">
-      <div class="todo-cart-top">
+      <div class="todo-cart-left">
         <p class="todo__title ${todo.isCompleted && 'completed'}">${todo.title}</p>
-        <p class="todo__createdAt" style="margin:0">${new Date(todo.createdAt).toLocaleDateString("fa-IR")}</p>
+        <p class="todo__createdAt">${new Date(todo.createdAt).toLocaleDateString("fa-IR")}</p>
       </div>
-      <div class="todo-cart-bottom">
+      <div class="todo-cart-right">
         <button class="todo__check" data-todo-id=${todo.id}><i class="fas fa-check-square"></i></button>
         <button class="todo__remove" data-todo-id=${todo.id}><i class="fas fa-trash-alt"></i></button>
+        <button class="todo__edit" data-todo-id=${todo.id}><i class="fas fa-edit"></i></button>
       </div>
     </div>
     </li>`
@@ -67,10 +71,9 @@ let result = "";
   checkBtns.forEach(btn =>{btn.addEventListener('click',checkTodo)})
 }
 
-function filterTodos(e){
-  const filter = e.target.value;
-  console.log(filter);
-  switch (filter){
+function filterTodos(){
+  const todos = getAllTodos()
+  switch (filterValue){
     case "all": {
       creatTodos(todos)
       break;
@@ -90,26 +93,42 @@ function filterTodos(e){
 }
 
 function removeTodo(e){
+  let todos = getAllTodos()
   const todoId = Number(e.target.dataset.todoId);
   todos = todos.filter((t) => t.id !== todoId)
-  filterTodos()
+  saveAllTodos(todos)
+  filterTodos( )
 }
 
 function checkTodo(e){
+  let todos = getAllTodos()
   const todoId = Number(e.target.dataset.todoId)
-  let todo = todos.find((t)=> t.id === todoId)
+  const todo = todos.find((t)=> t.id === todoId)
   todo.isCompleted = !todo.isCompleted;
+  saveAllTodos(todos)
   filterTodos()
 }
 
+// localStorage => web API
 function getAllTodos(){
-  const savedTodos = JSON.parse(localStorage.getItem("todos")) || []
-  return savedTodos
+  const savedTodos = JSON.parse(localStorage.getItem("todos")) || [] ;
+  return savedTodos;
 }
 
 function saveTodos(todo){
-  const savedTodos = getAllTodos()
-  savedTodos.push(todo)
-  localStorage.setItem("todos",JSON.stringify(savedTodos))
-  return savedTodos
+  const savedTodos = getAllTodos();
+  savedTodos.push(todo);
+  localStorage.setItem("todos", JSON.stringify(savedTodos));
+  return savedTodos; 
+}
+
+function saveAllTodos(todos){
+  localStorage.setItem("todos",JSON.stringify(todos))
+}
+
+setInterval(myTimer, 1000);
+
+function myTimer() {
+  const date = new Date();
+  document.getElementById("clock").innerHTML = date.toLocaleTimeString();
 }
