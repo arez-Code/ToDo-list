@@ -1,0 +1,132 @@
+body{
+  box-sizing: border-box;
+  background-color: #abadb1;
+  margin: 0;
+  padding: 0;
+}
+
+
+.main-container{
+  box-sizing: inherit;
+  box-shadow: 0 0 15px 3px rgb(65, 65, 65);
+  border-radius: 30px 30px 0 0;
+  margin: 60px auto;
+  width: 600px;
+  height: 700px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+header{
+  width: 100%;
+  height: 30%;
+}
+
+.avatar-upload{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50%;
+  margin: 10px 0;
+  position: relative;
+}
+
+.avatarDefault{
+  background-image: url("./img/images.png");
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size:cover;
+  width: 100px;
+  height: 100px;
+  border-radius: 100%;
+}
+
+#choose-avatar{
+  position: absolute;
+  top: 100px;
+}
+
+.bottom-header{
+  width: 100%;
+  height: 50%;
+}
+
+main{
+  box-sizing: inherit;
+}
+
+.completed{
+  text-decoration: line-through;
+  opacity: 0.5;
+}
+
+.label{
+  font-size: 35px;
+}
+
+input{
+  /* width: 250px;
+  height: 44px;
+  border:  0;
+  border-radius: 30px 0 0 30px;
+  box-sizing: border-box;
+  padding: 0 10px;
+  font-size: 20px; */
+}
+
+ul{
+  padding: 0;
+}
+
+li{
+  list-style-type: none;
+  margin: 7px 0;
+  box-sizing: border-box;
+  padding: 3px ;
+}
+
+.todo-container{
+  margin: 0 auto;
+}
+
+.todo__check{
+  color: blueviolet;
+  cursor: pointer;
+}
+
+.todo__remove{
+  color: red;
+  cursor: pointer;
+}
+
+.todoList{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.todo__title{
+  text-align :center;
+  margin: 0;
+  font-size: 20px;
+  letter-spacing: 1px;
+}
+
+#add-todo{
+  /* height: 44px;
+  width: 45px;
+  border: 0;
+  border-radius: 0 30px 30px 0;
+  background-color: #5adab0;
+  font-weight: bold; */
+}
+
+#add-todo:hover{
+  background-color: #42987d;
+  cursor: pointer;
+}
+
+button > i {
+  pointer-events: none;
+}

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="file.css">
+  <script src="https://kit.fontawesome.com/8b17c70c5e.js" crossorigin="anonymous"></script>
+  <title>Document</title>
+</head>
+<body>
+
+  <div class="main-container">
+    <header>
+      <div class="avatar-upload">
+        <img src="" class="avatar avatarDefault" id="Avatar">
+        <input type="file" id="choose-avatar">
+      </div>
+      <div class="bottom-header">
+        <div class="bottom-header-left"></div>
+        <div class="bottom-header-right"></div>
+      </div>
+    </header>
+    <main>
+            <form id="todo-form">
+                  <input type="text" id="todo-input" placeholder="add ToDo ...">
+                  <button type="submit" id="add-todo">add</button>
+                <div class="right">
+                  <select id="filter-todos" name="todos">
+                    <option value="all">all</option>
+                    <option value="completed">completed</option>
+                    <option value="uncompleted">uncompleted</option>
+                  </select>
+                </div>
+              <div class="todo-container">
+                <ul class="todoList"></ul>
+              </div>
+            </form>
+    </main>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
