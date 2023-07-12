@@ -13,15 +13,24 @@ selectFilters.addEventListener('change',(e)=>{
   filterTodos();
 })
 
+const userPhoto = localStorage.getItem("userPhoto");
+
+if (userPhoto) {
+  document.getElementById("Avatar").src = userPhoto;
+}
+
 function read(value) {
   const reader = new FileReader();
-
+  
   reader.onload = (e) => {
     document.getElementById("Avatar").src = e.target.result;
+    localStorage.setItem("userPhoto",e.target.result)
   }
 
   reader.readAsDataURL(value.files[0]);
 }
+
+
 
 document.addEventListener("DOMContentLoaded",()=>{
   const todos = getAllTodos();
@@ -124,6 +133,10 @@ function saveTodos(todo){
 
 function saveAllTodos(todos){
   localStorage.setItem("todos",JSON.stringify(todos))
+}
+
+function getUserImage(){
+
 }
 
 setInterval(myTimer, 1000);
